@@ -1,0 +1,215 @@
+/* Pinterest Extension Content Script Styles */
+
+/* Extension Overlay */
+#pinterest-extension-overlay {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+}
+
+/* Header */
+.pinterest-ext-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #e60023;
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.pinterest-ext-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.pinterest-ext-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.pinterest-ext-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.pinterest-ext-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Controls */
+.pinterest-ext-controls {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+}
+
+.pinterest-ext-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pinterest-ext-btn:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+
+.pinterest-ext-btn-primary {
+    background: #e60023;
+    color: white;
+    border-color: #e60023;
+}
+
+.pinterest-ext-btn-primary:hover {
+    background: #ad081b;
+    border-color: #ad081b;
+}
+
+/* Image highlighting */
+img.pinterest-ext-selectable {
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    border: 2px solid transparent !important;
+    border-radius: 4px !important;
+    position: relative !important;
+}
+
+img.pinterest-ext-selectable:hover {
+    border-color: #e60023 !important;
+    box-shadow: 0 0 0 2px rgba(230, 0, 35, 0.2) !important;
+    transform: scale(1.02) !important;
+}
+
+img.pinterest-ext-selected {
+    border-color: #e60023 !important;
+    box-shadow: 0 0 0 3px rgba(230, 0, 35, 0.3) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Add selection indicator */
+img.pinterest-ext-selected::after {
+    content: '✓';
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    background: #e60023 !important;
+    color: white !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    z-index: 1000 !important;
+}
+
+/* Message popup */
+.pinterest-ext-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: pinterest-fade-in 0.3s ease;
+}
+
+@keyframes pinterest-fade-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #pinterest-extension-overlay {
+        width: 280px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .pinterest-ext-stats {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .pinterest-ext-controls {
+        flex-direction: column;
+    }
+    
+    .pinterest-ext-btn {
+        width: 100%;
+    }
+}
+
+/* Prevent conflicts with existing styles */
+#pinterest-extension-overlay * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    #pinterest-extension-overlay {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #fff;
+    }
+    
+    .pinterest-ext-controls {
+        background: #1a1a1a;
+    }
+    
+    .pinterest-ext-btn {
+        background: #333;
+        color: #fff;
+        border-color: #555;
+    }
+    
+    .pinterest-ext-btn:hover {
+        background: #444;
+        border-color: #666;
+    }
+}
