@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest Extension Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .instructions {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .instructions h3 {
+            color: #2c5282;
+            margin-top: 0;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background-color: #e60023;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .small-images {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .small-images img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pinterest Extension Test Page</h1>
+    
+    <div class="instructions">
+        <h3>🧪 Test Instructions</h3>
+        <p>Use this page to test the Pinterest Extension functionality:</p>
+        <ul>
+            <li><strong>Method 1:</strong> Click the Pinterest Extension icon in your browser toolbar</li>
+            <li><strong>Method 2:</strong> Right-click on any image and select "Save to Pinterest"</li>
+            <li><strong>Method 3:</strong> Press Alt+P to activate overlay mode</li>
+        </ul>
+    </div>
+    
+    <div class="test-buttons">
+        <button class="btn btn-primary" onclick="loadMoreImages()">Load More Images</button>
+        <button class="btn btn-secondary" onclick="clearImages()">Clear Images</button>
+    </div>
+    
+    <div class="section">
+        <h2>🖼️ Test Images Gallery</h2>
+        <p>These images should be detected and selectable by the extension (all > 100x100px):</p>
+        <div class="gallery" id="main-gallery">
+            <!-- Large images that should be detected -->
+            <img src="https://i.pinimg.com/564x/1a/2b/3c/1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p.jpg" alt="Beautiful Landscape" title="Beautiful Landscape">
+            <img src="https://i.pinimg.com/564x/2b/3c/4d/2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q.jpg" alt="Modern Architecture" title="Modern Architecture">
+            <img src="https://i.pinimg.com/564x/3c/4d/5e/3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r.jpg" alt="Interior Design" title="Interior Design">
+            <img src="https://i.pinimg.com/564x/4d/5e/6f/4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s.jpg" alt="Travel Photography" title="Travel Photography">
+            <img src="https://i.pinimg.com/564x/5e/6f/7g/5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t.jpg" alt="Fashion Style" title="Fashion Style">
+            <img src="https://i.pinimg.com/564x/6f/7g/8h/6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u.jpg" alt="Food Photography" title="Food Photography">
+            <img src="https://i.pinimg.com/564x/7g/8h/9i/7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v.jpg" alt="Art & Design" title="Art & Design">
+            <img src="https://i.pinimg.com/564x/8h/9i/0j/8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w.jpg" alt="Nature Photography" title="Nature Photography">
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>🚫 Small Images (Should be Filtered Out)</h2>
+        <p>These images are smaller than 100x100px and should be filtered out:</p>
+        <div class="small-images">
+            <img src="https://via.placeholder.com/50x50/ff0000/ffffff?text=50x50" alt="Small Image 1">
+            <img src="https://via.placeholder.com/75x75/00ff00/ffffff?text=75x75" alt="Small Image 2">
+            <img src="https://via.placeholder.com/90x90/0000ff/ffffff?text=90x90" alt="Small Image 3">
+            <img src="https://via.placeholder.com/99x99/ffff00/000000?text=99x99" alt="Small Image 4">
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>📋 Extension Test Checklist</h2>
+        <div style="margin-top: 15px;">
+            <label><input type="checkbox"> Extension icon appears in browser toolbar</label><br>
+            <label><input type="checkbox"> Popup opens when clicking extension icon</label><br>
+            <label><input type="checkbox"> "Extract Images from Page" button works</label><br>
+            <label><input type="checkbox"> Images are detected and displayed</label><br>
+            <label><input type="checkbox"> Small images (< 100px) are filtered out</label><br>
+            <label><input type="checkbox"> Individual image selection works</label><br>
+            <label><input type="checkbox"> "Select All" button works</label><br>
+            <label><input type="checkbox"> "Clear Selection" button works</label><br>
+            <label><input type="checkbox"> Right-click context menu appears</label><br>
+            <label><input type="checkbox"> Alt+P keyboard shortcut works</label><br>
+            <label><input type="checkbox"> Demo login works</label><br>
+            <label><input type="checkbox"> Boards are loaded/displayed</label><br>
+            <label><input type="checkbox"> Save to board functionality works</label><br>
+        </div>
+    </div>
+    
+    <script>
+        let imageCount = 9;
+        
+        function loadMoreImages() {
+            const gallery = document.getElementById('main-gallery');
+            const imagesToAdd = [
+                'https://i.pinimg.com/564x/9i/0j/1k/9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x.jpg',
+                'https://i.pinimg.com/564x/0j/1k/2l/0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y.jpg',
+                'https://i.pinimg.com/564x/1k/2l/3m/1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z.jpg',
+                'https://i.pinimg.com/564x/2l/3m/4n/2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7a.jpg'
+            ];
+            
+            imagesToAdd.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Dynamic Image ${imageCount + index}`;
+                img.title = `Dynamic Image ${imageCount + index}`;
+                gallery.appendChild(img);
+            });
+            
+            imageCount += imagesToAdd.length;
+        }
+        
+        function clearImages() {
+            const gallery = document.getElementById('main-gallery');
+            gallery.innerHTML = '';
+            imageCount = 0;
+        }
+        
+        // Add some dynamic behavior for testing
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Pinterest Extension Test Page loaded');
+            console.log('Images found:', document.querySelectorAll('img').length);
+            
+            // Add click handlers to test images
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('click', function() {
+                    console.log('Image clicked:', this.src);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
